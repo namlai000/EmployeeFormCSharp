@@ -71,5 +71,13 @@ namespace EmployeeForm
                 return true;
             }
         }
+
+        private void btnAdd_click(object sender, EventArgs e)
+        {
+            if (validateInput() == false)
+            {
+                return;
+            }
+        }
     }
 }
