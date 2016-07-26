@@ -56,8 +56,26 @@
             this.btnLoad = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnShowSearchOption = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.cbFilter = new System.Windows.Forms.ComboBox();
+            this.btnFilter = new System.Windows.Forms.Button();
+            this.clId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clDOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clNational = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clQualification = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -269,6 +287,7 @@
             this.btnUpdate.TabIndex = 21;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDelete
             // 
@@ -278,6 +297,7 @@
             this.btnDelete.TabIndex = 22;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnSave
             // 
@@ -311,11 +331,147 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clId,
+            this.clFullName,
+            this.clDOB,
+            this.clGender,
+            this.clNational,
+            this.clPhone,
+            this.clAddress,
+            this.clQualification,
+            this.clSalary});
+            this.dataGridView1.Location = new System.Drawing.Point(377, 177);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(504, 168);
+            this.dataGridView1.TabIndex = 26;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectedRow);
+            // 
+            // btnShowSearchOption
+            // 
+            this.btnShowSearchOption.Location = new System.Drawing.Point(400, 13);
+            this.btnShowSearchOption.Name = "btnShowSearchOption";
+            this.btnShowSearchOption.Size = new System.Drawing.Size(160, 23);
+            this.btnShowSearchOption.TabIndex = 27;
+            this.btnShowSearchOption.Text = "Show Search Button";
+            this.btnShowSearchOption.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnFilter);
+            this.groupBox2.Controls.Add(this.cbFilter);
+            this.groupBox2.Controls.Add(this.btnSearch);
+            this.groupBox2.Controls.Add(this.txtSearch);
+            this.groupBox2.Location = new System.Drawing.Point(400, 42);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(295, 100);
+            this.groupBox2.TabIndex = 28;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Search";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(7, 24);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(201, 20);
+            this.txtSearch.TabIndex = 0;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(214, 22);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 1;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            // 
+            // cbFilter
+            // 
+            this.cbFilter.FormattingEnabled = true;
+            this.cbFilter.Location = new System.Drawing.Point(7, 60);
+            this.cbFilter.Name = "cbFilter";
+            this.cbFilter.Size = new System.Drawing.Size(201, 21);
+            this.cbFilter.TabIndex = 2;
+            // 
+            // btnFilter
+            // 
+            this.btnFilter.Location = new System.Drawing.Point(214, 58);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(75, 23);
+            this.btnFilter.TabIndex = 3;
+            this.btnFilter.Text = "Filter";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            // 
+            // clId
+            // 
+            this.clId.HeaderText = "ID";
+            this.clId.Name = "clId";
+            this.clId.ReadOnly = true;
+            // 
+            // clFullName
+            // 
+            this.clFullName.HeaderText = "Full Name";
+            this.clFullName.Name = "clFullName";
+            this.clFullName.ReadOnly = true;
+            // 
+            // clDOB
+            // 
+            this.clDOB.HeaderText = "Date of birth";
+            this.clDOB.Name = "clDOB";
+            this.clDOB.ReadOnly = true;
+            // 
+            // clGender
+            // 
+            this.clGender.HeaderText = "Gender";
+            this.clGender.Name = "clGender";
+            this.clGender.ReadOnly = true;
+            // 
+            // clNational
+            // 
+            this.clNational.HeaderText = "National";
+            this.clNational.Name = "clNational";
+            this.clNational.ReadOnly = true;
+            // 
+            // clPhone
+            // 
+            this.clPhone.HeaderText = "Phone";
+            this.clPhone.Name = "clPhone";
+            this.clPhone.ReadOnly = true;
+            // 
+            // clAddress
+            // 
+            this.clAddress.HeaderText = "Address";
+            this.clAddress.Name = "clAddress";
+            this.clAddress.ReadOnly = true;
+            // 
+            // clQualification
+            // 
+            this.clQualification.HeaderText = "Qualitification";
+            this.clQualification.Name = "clQualification";
+            this.clQualification.ReadOnly = true;
+            // 
+            // clSalary
+            // 
+            this.clSalary.HeaderText = "Salary";
+            this.clSalary.Name = "clSalary";
+            this.clSalary.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(893, 490);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.btnShowSearchOption);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.btnSave);
@@ -345,6 +501,9 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -379,6 +538,22 @@
         private System.Windows.Forms.Button btnLoad;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnShowSearchOption;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.ComboBox cbFilter;
+        private System.Windows.Forms.Button btnFilter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clFullName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clDOB;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clGender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clNational;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clPhone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clQualification;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clSalary;
     }
 }
 
