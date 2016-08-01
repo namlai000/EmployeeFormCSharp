@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace EmployeeForm
 {
@@ -15,6 +16,7 @@ namespace EmployeeForm
         public Form1()
         {
             InitializeComponent();
+            loadEmployee();
         }
 
         bool validateInput()
@@ -77,13 +79,27 @@ namespace EmployeeForm
         void addNewEmployee() 
         {
             string gender;
-            if (radMale.Checked) gender = "Male";
-            else gender = "Female";          
+            if (radMale.Checked) gender = "M";
+            else gender = "F";
 
+            /*Database*/
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = @"server=.\SQLEXPRESS2014;database=EmployeeDB;uid=sa;pwd=namlai120;";
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+
+            string sql = string.Format("INSERT INTO Employees (FullName,DateOfBirth,Gender,[National],Phone,Address,Qualification,Salary) VALUES('{0}','{1)','{2}','{3}','{4}','{5}','{6}','{7}')", 
+                txtFullName.Text, dtpDate.Value.ToShortDateString(), gender, cbNational.Text, txtPhone.Text,  txtAddress.Text, cbQualification.Text, txtSalary.Text);
+            cmd.CommandText = sql;
+            cmd.ExecuteNonQuery();
+
+            /*
             DataGridViewRow r = new DataGridViewRow();
             r.CreateCells(dataGridView1);
             r.SetValues("", txtFullName.Text, dtpDate.Value.ToShortDateString(), gender, cbNational.Text, txtPhone.Text, txtAddress.Text, cbQualification.Text, txtSalary.Text);
             dataGridView1.Rows.Add(r);
+            */
         }
 
         void updateEmployee()
@@ -95,6 +111,29 @@ namespace EmployeeForm
             r.SetValues("", txtFullName.Text, dtpDate.Value.ToShortDateString(), gender, cbNational.Text, txtPhone.Text, txtAddress.Text, cbQualification.Text, txtSalary.Text);
         }
 
+        void loadEmployee()
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = @"server=.\SQLEXPRESS2014;database=EmployeeDB;uid=sa;pwd=namlai120";
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = "SELECT * FROM Employees";
+                SqlDataReader dr = cmd.ExecuteReader();
+                dataGridView1.Rows.Clear();
+                while (dr.Read())
+                {
+                    dataGridView1.Rows.Add(dr[0].ToString(), dr[1].ToString(), DateTime.Parse(dr[2].ToString()).ToShortDateString(), dr[3].ToString(), dr[4].ToString(), dr[5].ToString(), dr[6].ToString(), dr[7].ToString(), double.Parse(dr[8].ToString()));
+                }
+                dr.Close();
+            }catch (Exception)
+            {
+                throw;
+            }
+        }
+
         private void btnAdd_click(object sender, EventArgs e)
         {
             if (validateInput() == false) return;
@@ -102,6 +141,7 @@ namespace EmployeeForm
             {
                 addNewEmployee();
                 MessageBox.Show("Adding Successful!");
+                loadEmployee();
             }
             catch (Exception)
             {
@@ -122,7 +162,7 @@ namespace EmployeeForm
                 DateTime.TryParse(r.Cells["clDOB"].Value.ToString(), out dt);
                 dtpDate.Value = dt;
 
-                if (r.Cells["clGender"].Value.ToString().Equals("Male")) radMale.Checked = true;
+                if (r.Cells["clGender"].Value.ToString().Equals("M")) radMale.Checked = true;
                 else radFemale.Checked = true;
 
                 cbNational.Text = r.Cells["clNational"].Value.ToString();
@@ -150,7 +190,15 @@ namespace EmployeeForm
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
+            }
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            loadEmployee();
         }
     }
 }
