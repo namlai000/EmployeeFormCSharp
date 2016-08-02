@@ -113,6 +113,7 @@ namespace EmployeeForm
              * emp.FUllName = txtFullName.Text;
              * ...
              * dataSet.AddToEmployees(emp);
+             * dataSet.SaveChanges();
              */
         }
 
