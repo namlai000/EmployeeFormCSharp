@@ -105,6 +105,15 @@ namespace EmployeeForm
             r.SetValues("", txtFullName.Text, dtpDate.Value.ToShortDateString(), gender, cbNational.Text, txtPhone.Text, txtAddress.Text, cbQualification.Text, txtSalary.Text);
             dataGridView1.Rows.Add(r);
             */
+
+            /*
+             * MODEL ENTITY DATABASE
+             * EmployeeDBEntities dataSet = new EmployeeDBEntities();
+             * Employees emp = new Employees();
+             * emp.FUllName = txtFullName.Text;
+             * ...
+             * dataSet.AddToEmployees(emp);
+             */
         }
 
         void updateEmployee()
