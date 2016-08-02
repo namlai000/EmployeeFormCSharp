@@ -139,6 +139,20 @@ namespace EmployeeForm
             }
         }
 
+        void deleteEmployee(int id)
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = @"server=.\SQLEXPRESS2014;database=EmployeeDB;uid=sa;pwd=namlai120;";
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = con;
+
+            string sql = string.Format("DELETE FROM Employees WHERE ID={0}", id);
+                
+            cmd.CommandText = sql;
+            cmd.ExecuteNonQuery();
+        }
+
         private void btnAdd_click(object sender, EventArgs e)
         {
             if (validateInput() == false) return;
@@ -196,7 +210,11 @@ namespace EmployeeForm
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
+                //dataGridView1.Rows.Remove(dataGridView1.SelectedRows[0]);
+                string id = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                int idd = int.Parse(id);
+                deleteEmployee(idd);
+                loadEmployee();
             }
         }
 
