@@ -78,10 +78,6 @@ namespace EmployeeForm
 
         void addNewEmployee() 
         {
-            string gender;
-            if (radMale.Checked) gender = "M";
-            else gender = "F";
-
             /*Database*/
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"server=.\SQLEXPRESS2014;database=EmployeeDB;uid=sa;pwd=namlai120;";
@@ -89,8 +85,16 @@ namespace EmployeeForm
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = con;
 
-            string sql = string.Format("INSERT INTO Employees (FullName,DateOfBirth,Gender,[National],Phone,Address,Qualification,Salary) VALUES('{0}','{1)','{2}','{3}','{4}','{5}','{6}','{7}')", 
-                txtFullName.Text, dtpDate.Value.ToShortDateString(), gender, cbNational.Text, txtPhone.Text,  txtAddress.Text, cbQualification.Text, txtSalary.Text);
+            string gender;
+            if (radMale.Checked) gender = "M";
+            else gender = "F";
+
+            string salary = "NULL";
+            if (txtSalary.Text.Length != 0) salary = txtSalary.Text;
+
+            string date = dtpDate.Value.ToShortDateString();
+
+            string sql = string.Format("INSERT INTO Employees (FullName,DateOfBirth,Gender,[National],Phone,Address,Qualification,Salary) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}',{7})", txtFullName.Text, date, gender, cbNational.Text, txtPhone.Text,  txtAddress.Text, cbQualification.Text, salary);
             cmd.CommandText = sql;
             cmd.ExecuteNonQuery();
 
@@ -145,7 +149,6 @@ namespace EmployeeForm
             }
             catch (Exception)
             {
-                
                 throw;
             }
         }
