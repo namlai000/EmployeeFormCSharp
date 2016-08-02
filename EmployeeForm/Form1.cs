@@ -94,7 +94,8 @@ namespace EmployeeForm
 
             string date = dtpDate.Value.ToShortDateString();
 
-            string sql = string.Format("INSERT INTO Employees (FullName,DateOfBirth,Gender,[National],Phone,Address,Qualification,Salary) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}',{7})", txtFullName.Text, date, gender, cbNational.Text, txtPhone.Text,  txtAddress.Text, cbQualification.Text, salary);
+            string sql = string.Format("INSERT INTO Employees (FullName,DateOfBirth,Gender,[National],Phone,Address,Qualification,Salary) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}',{7})", 
+                txtFullName.Text, date, gender, cbNational.Text, txtPhone.Text,  txtAddress.Text, cbQualification.Text, salary);
             cmd.CommandText = sql;
             cmd.ExecuteNonQuery();
 
