@@ -13,6 +13,8 @@ namespace EmployeeForm
 {
     public partial class Form1 : Form
     {
+        EmployeeDBEntities entity = new EmployeeDBEntities();
+
         public Form1()
         {
             InitializeComponent();
@@ -79,6 +81,7 @@ namespace EmployeeForm
         void addNewEmployee() 
         {
             /*Database*/
+            /*
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"server=.\SQLEXPRESS2014;database=EmployeeDB;uid=sa;pwd=namlai120;";
             con.Open();
@@ -98,6 +101,7 @@ namespace EmployeeForm
                 txtFullName.Text, date, gender, cbNational.Text, txtPhone.Text,  txtAddress.Text, cbQualification.Text, salary);
             cmd.CommandText = sql;
             cmd.ExecuteNonQuery();
+            */
 
             /*
             DataGridViewRow r = new DataGridViewRow();
@@ -115,19 +119,41 @@ namespace EmployeeForm
              * dataSet.AddToEmployees(emp);
              * dataSet.SaveChanges();
              */
+
+            string gender;
+            if (radMale.Checked) gender = "M";
+            else gender = "F";
+
+            Employee emp = new Employee();
+            emp.FullName = txtFullName.Text;
+            emp.DateOfBirth = dtpDate.Value;
+            emp.Gender = gender;
+            emp.National = cbNational.Text;
+            emp.Phone = txtPhone.Text;
+            emp.Address = txtAddress.Text;
+            emp.Qualification = cbQualification.Text;
+            emp.Salary = decimal.Parse(txtSalary.Text);
+
+            entity.Employees.Add(emp);
+            entity.SaveChanges();
         }
 
         void updateEmployee()
         {
+            /*
             DataGridViewRow r = dataGridView1.SelectedRows[0];
             string gender;
             if (radMale.Checked) gender = "Male";
             else gender = "Female";
             r.SetValues("", txtFullName.Text, dtpDate.Value.ToShortDateString(), gender, cbNational.Text, txtPhone.Text, txtAddress.Text, cbQualification.Text, txtSalary.Text);
+            */
+
+           
         }
 
         void loadEmployee()
         {
+            /*
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"server=.\SQLEXPRESS2014;database=EmployeeDB;uid=sa;pwd=namlai120";
             try
@@ -147,6 +173,9 @@ namespace EmployeeForm
             {
                 throw;
             }
+            */
+            
+            dataGridView1.DataSource = entity.Employees.ToList();
         }
 
         void deleteEmployee(int id)
@@ -183,21 +212,21 @@ namespace EmployeeForm
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 DataGridViewRow r = dataGridView1.SelectedRows[0];
-                lbID.Text = r.Cells["clId"].Value.ToString();
-                txtFullName.Text = r.Cells["clFullName"].Value.ToString();
+                lbID.Text = r.Cells[0].Value.ToString();
+                txtFullName.Text = r.Cells[1].Value.ToString();
 
                 DateTime dt;
-                DateTime.TryParse(r.Cells["clDOB"].Value.ToString(), out dt);
+                DateTime.TryParse(r.Cells[2].Value.ToString(), out dt);
                 dtpDate.Value = dt;
 
-                if (r.Cells["clGender"].Value.ToString().Equals("M")) radMale.Checked = true;
+                if (r.Cells[3].Value.ToString().Equals("M")) radMale.Checked = true;
                 else radFemale.Checked = true;
 
-                cbNational.Text = r.Cells["clNational"].Value.ToString();
-                txtPhone.Text = r.Cells["clPhone"].Value.ToString();
-                txtAddress.Text = r.Cells["clAddress"].Value.ToString();
-                cbQualification.Text = r.Cells["clQualification"].Value.ToString();
-                txtSalary.Text = r.Cells["clSalary"].Value.ToString();
+                cbNational.Text = r.Cells[4].Value.ToString();
+                txtPhone.Text = r.Cells[5].Value.ToString();
+                txtAddress.Text = r.Cells[6].Value.ToString();
+                cbQualification.Text = r.Cells[7].Value.ToString();
+                txtSalary.Text = r.Cells[8].Value.ToString();
             }
         }
 

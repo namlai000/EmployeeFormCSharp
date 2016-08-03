@@ -57,15 +57,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.clId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clDOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clGender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clNational = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clQualification = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnShowSearchOption = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnFilter = new System.Windows.Forms.Button();
@@ -337,16 +328,6 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clId,
-            this.clFullName,
-            this.clDOB,
-            this.clGender,
-            this.clNational,
-            this.clPhone,
-            this.clAddress,
-            this.clQualification,
-            this.clSalary});
             this.dataGridView1.Location = new System.Drawing.Point(377, 177);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -355,60 +336,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(504, 168);
             this.dataGridView1.TabIndex = 26;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectedRow);
-            // 
-            // clId
-            // 
-            this.clId.HeaderText = "ID";
-            this.clId.Name = "clId";
-            this.clId.ReadOnly = true;
-            // 
-            // clFullName
-            // 
-            this.clFullName.HeaderText = "Full Name";
-            this.clFullName.Name = "clFullName";
-            this.clFullName.ReadOnly = true;
-            // 
-            // clDOB
-            // 
-            this.clDOB.HeaderText = "Date of birth";
-            this.clDOB.Name = "clDOB";
-            this.clDOB.ReadOnly = true;
-            // 
-            // clGender
-            // 
-            this.clGender.HeaderText = "Gender";
-            this.clGender.Name = "clGender";
-            this.clGender.ReadOnly = true;
-            // 
-            // clNational
-            // 
-            this.clNational.HeaderText = "National";
-            this.clNational.Name = "clNational";
-            this.clNational.ReadOnly = true;
-            // 
-            // clPhone
-            // 
-            this.clPhone.HeaderText = "Phone";
-            this.clPhone.Name = "clPhone";
-            this.clPhone.ReadOnly = true;
-            // 
-            // clAddress
-            // 
-            this.clAddress.HeaderText = "Address";
-            this.clAddress.Name = "clAddress";
-            this.clAddress.ReadOnly = true;
-            // 
-            // clQualification
-            // 
-            this.clQualification.HeaderText = "Qualitification";
-            this.clQualification.Name = "clQualification";
-            this.clQualification.ReadOnly = true;
-            // 
-            // clSalary
-            // 
-            this.clSalary.HeaderText = "Salary";
-            this.clSalary.Name = "clSalary";
-            this.clSalary.ReadOnly = true;
             // 
             // btnShowSearchOption
             // 
@@ -546,15 +473,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.ComboBox cbFilter;
         private System.Windows.Forms.Button btnFilter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clFullName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clDOB;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clGender;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clNational;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clPhone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clQualification;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clSalary;
     }
 }
 
