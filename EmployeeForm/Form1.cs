@@ -148,7 +148,12 @@ namespace EmployeeForm
             r.SetValues("", txtFullName.Text, dtpDate.Value.ToShortDateString(), gender, cbNational.Text, txtPhone.Text, txtAddress.Text, cbQualification.Text, txtSalary.Text);
             */
 
-           
+            DataGridViewRow r = dataGridView1.SelectedRows[0];
+            int id = int.Parse(r.Cells[0].Value.ToString());
+            Employee emp = entity.Employees.First(em => em.ID == id);
+            emp.FullName = txtFullName.Text;
+            entity.SaveChanges();
+            
         }
 
         void loadEmployee()
@@ -180,6 +185,7 @@ namespace EmployeeForm
 
         void deleteEmployee(int id)
         {
+            /*
             SqlConnection con = new SqlConnection();
             con.ConnectionString = @"server=.\SQLEXPRESS2014;database=EmployeeDB;uid=sa;pwd=namlai120;";
             con.Open();
@@ -190,6 +196,11 @@ namespace EmployeeForm
                 
             cmd.CommandText = sql;
             cmd.ExecuteNonQuery();
+            */
+
+            Employee emp = entity.Employees.First(em => em.ID == id);
+            entity.Employees.Remove(emp);
+            entity.SaveChanges();
         }
 
         private void btnAdd_click(object sender, EventArgs e)
